@@ -14,16 +14,9 @@ import med.voll.api.endereco.Endereco;
 @Data
 @EqualsAndHashCode(of = "id")
 
-@Table
-@Entity
+@Table(name = "medicos")
+@Entity(name = "Medico")
 public class Medico {
-    public Medico(DadosCadastroMedico dados) {
-        this.nome = dados.nome();
-        this.email = dados.email();
-        this.crm = dados.crm();
-        this.especialidade = dados.especialidade();
-        this.endereco = new Endereco(dados.endereco());
-    }
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
@@ -34,4 +27,12 @@ public class Medico {
     private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
+
+    public Medico(DadosCadastroMedico dados) {
+        this.nome = dados.nome();
+        this.email = dados.email();
+        this.crm = dados.crm();
+        this.especialidade = dados.especialidade();
+        this.endereco = new Endereco(dados.endereco());
+    }
 }
